@@ -1,0 +1,16 @@
+{
+	"records": [
+		{
+			"key": "test/only-allow-resources-from-pmr/pass-all-resources-are-from-pmr/tfconfig-functions",
+			"source": "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfconfig-functions/tfconfig-functions.sentinel",
+			"sourceSum": "3f45ca6afcfecf16869cc2ec4013e216a97d5d6a157cd27ffe6a0ca105fa816c",
+			"dest": "/Users/yuleiliu/unfinished-projects/sentinel-only-allow-resource-from-pmr/.sentinel/test-modules/test/only-allow-resources-from-pmr/pass-all-resources-are-from-pmr/tfconfig-functions-3f45ca6afcfecf16869cc2ec4013e216a97d5d6a157cd27ffe6a0ca105fa816c.sentinel"
+		},
+		{
+			"key": "test/only-allow-resources-from-pmr/pass-all-resources-are-not-from-pmr/tfconfig-functions",
+			"source": "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfconfig-functions/tfconfig-functions.sentinel",
+			"sourceSum": "3f45ca6afcfecf16869cc2ec4013e216a97d5d6a157cd27ffe6a0ca105fa816c",
+			"dest": "/Users/yuleiliu/unfinished-projects/sentinel-only-allow-resource-from-pmr/.sentinel/test-modules/test/only-allow-resources-from-pmr/pass-all-resources-are-not-from-pmr/tfconfig-functions-3f45ca6afcfecf16869cc2ec4013e216a97d5d6a157cd27ffe6a0ca105fa816c.sentinel"
+		}
+	]
+}

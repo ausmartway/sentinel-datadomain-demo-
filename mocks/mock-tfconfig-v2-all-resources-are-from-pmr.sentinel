@@ -1,0 +1,424 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"references": [
+					"var.region",
+				],
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "",
+	},
+	"awscc": {
+		"alias": "",
+		"config": {
+			"region": {
+				"references": [
+					"var.region",
+				],
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/awscc",
+		"module_address":      "",
+		"name":                "awscc",
+		"provider_config_key": "awscc",
+		"version_constraint":  "~> 0.7",
+	},
+	"module.datazone_environment:awscc": {
+		"alias": "",
+		"config": {
+			"region": {
+				"references": [
+					"var.region",
+				],
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/awscc",
+		"module_address":      "module.datazone_environment",
+		"name":                "awscc",
+		"provider_config_key": "module.datazone_environment:awscc",
+		"version_constraint":  "~> 0.7",
+	},
+	"tfe": {
+		"alias":               "",
+		"config":              {},
+		"full_name":           "registry.terraform.io/hashicorp/tfe",
+		"module_address":      "",
+		"name":                "tfe",
+		"provider_config_key": "tfe",
+		"version_constraint":  "0.54.0",
+	},
+}
+
+resources = {
+	"data.tfe_outputs.domain": {
+		"address": "data.tfe_outputs.domain",
+		"config": {
+			"organization": {
+				"references": [
+					"var.tfc_organization",
+				],
+			},
+			"workspace": {
+				"references": [
+					"var.datazone_workspace_name",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "domain",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_outputs",
+	},
+	"module.datazone_environment.awscc_datazone_environment.this": {
+		"address": "module.datazone_environment.awscc_datazone_environment.this",
+		"config": {
+			"domain_identifier": {
+				"references": [
+					"var.domain_id",
+				],
+			},
+			"environment_profile_identifier": {
+				"references": [
+					"awscc_datazone_environment_profile.this",
+					"each.value.environment_profile_identifier",
+					"each.value",
+				],
+			},
+			"name": {
+				"references": [
+					"each.value.name",
+					"each.value",
+				],
+			},
+			"project_identifier": {
+				"references": [
+					"var.project_map",
+					"each.value.project_identifier",
+					"each.value",
+					"each.value.project_identifier",
+					"each.value",
+				],
+			},
+		},
+		"count":      {},
+		"depends_on": [],
+		"for_each": {
+			"references": [
+				"var.datazone_environments",
+			],
+		},
+		"mode":                "managed",
+		"module_address":      "module.datazone_environment",
+		"name":                "this",
+		"provider_config_key": "module.datazone_environment:awscc",
+		"provisioners":        [],
+		"type":                "awscc_datazone_environment",
+	},
+	"module.datazone_environment.awscc_datazone_environment_profile.this": {
+		"address": "module.datazone_environment.awscc_datazone_environment_profile.this",
+		"config": {
+			"aws_account_id": {
+				"references": [
+					"each.value.aws_account_id",
+					"each.value",
+				],
+			},
+			"aws_account_region": {
+				"references": [
+					"each.value.region",
+					"each.value",
+				],
+			},
+			"description": {
+				"references": [
+					"each.value.description",
+					"each.value",
+				],
+			},
+			"domain_identifier": {
+				"references": [
+					"var.domain_id",
+				],
+			},
+			"environment_blueprint_identifier": {
+				"references": [
+					"var.blueprint_map",
+					"each.value.environment_blueprint_identifier",
+					"each.value",
+					"each.value.environment_blueprint_identifier",
+					"each.value",
+				],
+			},
+			"name": {
+				"references": [
+					"each.value.name",
+					"each.value",
+				],
+			},
+			"project_identifier": {
+				"references": [
+					"var.project_map",
+					"each.value.project_identifier",
+					"each.value",
+					"each.value.project_identifier",
+					"each.value",
+				],
+			},
+			"user_parameters": {
+				"references": [
+					"each.value.user_parameters",
+					"each.value",
+				],
+			},
+		},
+		"count":      {},
+		"depends_on": [],
+		"for_each": {
+			"references": [
+				"var.datazone_environment_profiles",
+			],
+		},
+		"mode":                "managed",
+		"module_address":      "module.datazone_environment",
+		"name":                "this",
+		"provider_config_key": "module.datazone_environment:awscc",
+		"provisioners":        [],
+		"type":                "awscc_datazone_environment_profile",
+	},
+}
+
+provisioners = {}
+
+variables = {
+	"blueprint_map": {
+		"default":        null,
+		"description":    "The environment blueprint to deploy",
+		"module_address": "",
+		"name":           "blueprint_map",
+	},
+	"datazone_environment_profiles": {
+		"default": {
+			"DefaultDataLake": {
+				"aws_account_id":                   "855831148133",
+				"description":                      null,
+				"environment_blueprint_identifier": "DefaultDataLake",
+				"name":               "DefaultDataLake_profile",
+				"project_identifier": "shared_env",
+				"region":             "ap-southeast-2",
+				"user_parameters":    null,
+			},
+			"DefaultDataWarehouse": {
+				"aws_account_id":                   "855831148133",
+				"description":                      null,
+				"environment_blueprint_identifier": "DefaultDataWarehouse",
+				"name":               "DefaultDataWarehouse_profile",
+				"project_identifier": "shared_env",
+				"region":             "ap-southeast-2",
+				"user_parameters":    [],
+			},
+		},
+		"description":    "The environment profiles to deploy",
+		"module_address": "",
+		"name":           "datazone_environment_profiles",
+	},
+	"datazone_environments": {
+		"default": {
+			"Curated": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "Curated Data Lake",
+				"project_identifier": "data_team",
+			},
+			"Product": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "Product Data Lake",
+				"project_identifier": "data_team",
+			},
+			"Raw": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "Raw Data Lake",
+				"project_identifier": "data_team",
+			},
+		},
+		"description":    "The environments to deploy",
+		"module_address": "",
+		"name":           "datazone_environments",
+	},
+	"datazone_workspace_name": {
+		"default":        null,
+		"description":    "The workspace to read outputs",
+		"module_address": "",
+		"name":           "datazone_workspace_name",
+	},
+	"domain_id": {
+		"default":        null,
+		"description":    "The domain to deploy the environment",
+		"module_address": "",
+		"name":           "domain_id",
+	},
+	"module.datazone_environment:blueprint_map": {
+		"default":        null,
+		"description":    "The environment blueprint to deploy",
+		"module_address": "module.datazone_environment",
+		"name":           "blueprint_map",
+	},
+	"module.datazone_environment:datazone_environment_profiles": {
+		"default": {
+			"DefaultDataLake": {
+				"aws_account_id":                   "855831148133",
+				"description":                      null,
+				"environment_blueprint_identifier": "DefaultDataLake",
+				"name":               "DefaultDataLake_profile",
+				"project_identifier": "shared_env",
+				"region":             "ap-southeast-2",
+				"user_parameters":    null,
+			},
+			"DefaultDataWarehouse": {
+				"aws_account_id":                   "855831148133",
+				"description":                      null,
+				"environment_blueprint_identifier": "DefaultDataWarehouse",
+				"name":               "DefaultDataWarehouse_profile",
+				"project_identifier": "shared_env",
+				"region":             "ap-southeast-2",
+				"user_parameters":    [],
+			},
+		},
+		"description":    "The environment profiles to deploy",
+		"module_address": "module.datazone_environment",
+		"name":           "datazone_environment_profiles",
+	},
+	"module.datazone_environment:datazone_environments": {
+		"default": {
+			"Curated": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "CuratedDataLake",
+				"project_identifier": "data_team",
+			},
+			"Product": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "ProductDataLake",
+				"project_identifier": "data_team",
+			},
+			"Raw": {
+				"environment_profile_identifier": "DefaultDataLake",
+				"name":               "RawDataLake",
+				"project_identifier": "data_team",
+			},
+		},
+		"description":    "The environments to deploy",
+		"module_address": "module.datazone_environment",
+		"name":           "datazone_environments",
+	},
+	"module.datazone_environment:domain_id": {
+		"default":        null,
+		"description":    "The domain to deploy the environment",
+		"module_address": "module.datazone_environment",
+		"name":           "domain_id",
+	},
+	"module.datazone_environment:project_map": {
+		"default":        null,
+		"description":    "map of projects to lookup id by project name",
+		"module_address": "module.datazone_environment",
+		"name":           "project_map",
+	},
+	"module.datazone_environment:region": {
+		"default":        "ap-southeast-2",
+		"description":    "The region to deploy the domain",
+		"module_address": "module.datazone_environment",
+		"name":           "region",
+	},
+	"project_map": {
+		"default":        null,
+		"description":    "The project to deploy the environment",
+		"module_address": "",
+		"name":           "project_map",
+	},
+	"region": {
+		"default":        "ap-southeast-2",
+		"description":    "The region to deploy the domain",
+		"module_address": "",
+		"name":           "region",
+	},
+	"tfc_organization": {
+		"default":        "tfc-demo-au",
+		"description":    "The HCP Terraform organization name",
+		"module_address": "",
+		"name":           "tfc_organization",
+	},
+}
+
+outputs = {}
+
+module_calls = {
+	"datazone_environment": {
+		"config": {
+			"blueprint_map": {
+				"references": [
+					"var.blueprint_map",
+					"data.tfe_outputs.domain.values.datazone_environment_blueprints",
+					"data.tfe_outputs.domain.values",
+					"data.tfe_outputs.domain",
+				],
+			},
+			"datazone_environment_profiles": {
+				"references": [
+					"var.datazone_environment_profiles",
+				],
+			},
+			"datazone_environments": {
+				"references": [
+					"var.datazone_environments",
+				],
+			},
+			"domain_id": {
+				"references": [
+					"var.domain_id",
+					"data.tfe_outputs.domain.values.datazone_domain_id",
+					"data.tfe_outputs.domain.values",
+					"data.tfe_outputs.domain",
+				],
+			},
+			"project_map": {
+				"references": [
+					"var.project_map",
+					"data.tfe_outputs.domain.values.projects",
+					"data.tfe_outputs.domain.values",
+					"data.tfe_outputs.domain",
+				],
+			},
+			"region": {
+				"references": [
+					"var.region",
+				],
+			},
+		},
+		"count":              {},
+		"depends_on":         [],
+		"for_each":           {},
+		"module_address":     "",
+		"name":               "datazone_environment",
+		"source":             "app.terraform.io/tfc-demo-au/datazone-environments/awscc",
+		"version_constraint": "~>  0.1.1",
+	},
+}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}
