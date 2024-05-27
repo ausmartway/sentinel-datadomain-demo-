@@ -15,3 +15,8 @@ import "module" "tfstate-functions" {
 import "module" "tfrun-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfrun-functions/tfrun-functions.sentinel"
 }
+
+policy "only-allow-resources-from-pmr" {
+  source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/tf-only-allow-resources-from-pmr/tf-only-allow-resources-from-pmr.sentinel"
+  enforcement_level = "advisory"
+}
