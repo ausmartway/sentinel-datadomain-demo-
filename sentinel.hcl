@@ -18,5 +18,5 @@ import "module" "tfrun-functions" {
 
 policy "only-allow-resources-from-pmr" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/tf-only-allow-resources-from-pmr/tf-only-allow-resources-from-pmr.sentinel"
-  enforcement_level = "advisory"
+  enforcement_level = "soft-mandatory"
 }
